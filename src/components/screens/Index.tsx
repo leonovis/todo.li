@@ -10,6 +10,7 @@ import { SignOutButton } from '~/components/domain/auth/SignOutButton';
 import { Head } from '~/components/shared/Head';
 import { useFirestore, useStorage } from '~/lib/firebase';
 import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 type Note = {
   id: string,
@@ -76,7 +77,7 @@ function Index() {
 
       const docRef = await addDoc(notesCollection, newNote);
 
-      toast.success('🦄 Saved the tool successfully!', {
+      toast.success('Created note task successfully!', {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -108,28 +109,19 @@ function Index() {
             <input type='text' onChange={(e) => handleInputChange(InputEnum.Title, e.target.value)} value={inputData.title} placeholder='title' className="m-4 text-slate-50 bg-transparent border border-slate-700 focus:ring-slate-400 focus:outline-none p-4 rounded-lg"/>
             <input type='text' onChange={(e) => handleInputChange(InputEnum.Description, e.target.value)} value={inputData.description} placeholder='description' className="m-4 text-slate-50 bg-transparent border border-slate-700 focus:ring-slate-400 focus:outline-none p-4 rounded-lg"/>
             <input type='text' onChange={(e) => handleInputChange(InputEnum.Url, e.target.value)} value={inputData.url} placeholder='url' className="m-4 text-slate-50 bg-transparent border border-slate-700 focus:ring-slate-400 focus:outline-none p-4 rounded-lg"/>
-            <button type='submit' placeholder='Add new note' className='m-4 p-5 transition-opacity text-slate-50 border border-purple-500 p5 rounded-lg bg-purple-600 bg-opacity-30 hover:bg-opacity-50'>Add new note</button>
+            <button type='submit' placeholder='Add new note' className='m-4 p-5 transition-opacity text-slate-50 border border-violet-500 p5 rounded-lg bg-violet-600 bg-opacity-30 hover:bg-opacity-50'>Add new note</button>
           </form>
-          <table className='table w-full bg-transparent text-slate-50'>
-            <thead>
-              <tr>
-                <th className='bg-slate-900 border border-slate-700'>Title</th>
-                <th className='bg-slate-900 border border-slate-700'>Desription</th>
-                <th className='bg-slate-900 border border-slate-700'>Link</th>
-              </tr>
-            </thead>
-            <tbody>
+          <div className='grid grid-cols-3 gap-4 w-full bg-transparent text-slate-50'>
               {
                 notes.map((note) => (
-                  <tr key={note.id}>
-                    <td className='bg-slate-800 border border-slate-700'>{note.title}</td>
-                    <td className='bg-slate-800 border border-slate-700'>{note.description}</td>
-                    <td className='bg-slate-800 border border-slate-700'>{note.url}</td>
-                  </tr>
+                  <div key={note.id} className='h-48 rounded-md shadow-slate-900 shadow-md p-4 bg-gradient-to-r'>
+                    <div className=''>{note.title}</div>
+                    <div className=''>{note.description}</div>
+                    <div className=''>{note.url}</div>
+                  </div>
                 ))
               }
-            </tbody>
-          </table>
+          </div>
         </div>
       </div>
       <ToastContainer />
