@@ -114,7 +114,7 @@ function Index() {
           <div className='grid grid-cols-3 gap-4 w-full bg-transparent text-slate-50'>
               {
                 notes.map((note) => (
-                  <div key={note.id} className='h-48 rounded-md shadow-slate-900 shadow-md p-4 bg-gradient-to-r'>
+                  <div key={note.id} className='h-48 rounded-md shadow-slate-900 shadow-md p-4 bg-gradient-to-r from-slate-800 to-slate-700'>
                     <div className=''>{note.title}</div>
                     <div className=''>{note.description}</div>
                     <div className=''>{note.url}</div>
